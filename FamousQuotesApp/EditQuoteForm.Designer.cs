@@ -69,6 +69,7 @@
             btnSave.TabIndex = 3;
             btnSave.Text = "Зберегти";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
@@ -123,7 +124,6 @@
             Name = "EditQuoteForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Додавання/Редагування вислову";
-            Load += EditQuoteForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

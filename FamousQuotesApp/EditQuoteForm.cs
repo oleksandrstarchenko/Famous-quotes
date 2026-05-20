@@ -1,28 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FamousQuotesApp
 {
     public partial class EditQuoteForm : Form
     {
+        // Ця властивість дозволить головній формі забрати нову цитату
+        public Quote NewQuote { get; private set; }
+
         public EditQuoteForm()
         {
             InitializeComponent();
+
+            // Додаємо варіанти у випадаючий список категорій
+            cmbCategory.Items.AddRange(new string[] { "Філософія", "Наука", "Мотивація", "Мистецтво", "Спорт" });
+            cmbCategory.SelectedIndex = 0; // Вибираємо перший варіант за замовчуванням
         }
 
-        private void EditQuoteForm_Load(object sender, EventArgs e)
+        // Логіка кнопки "Зберегти"
+        private void btnSave_Click(object sender, EventArgs e)
         {
+            // Перевіряємо, чи користувач ввів текст
+            if (string.IsNullOrWhiteSpace(txtText.Text) || string.IsNullOrWhiteSpace(txtAutor.Text))
+            {
+                MessageBox.Show("Будь ласка, заповніть текст цитати та автора!", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Створюємо нову цитату з введених даних
+            NewQuote = new Quote(txtText.Text, txtAutor.Text, cmbCategory.Text);
+
+            // Кажемо програмі, що все пройшло успішно (OK) і закриваємо вікно
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Просто закриваємо це модальне вікно без збереження даних
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

@@ -40,10 +40,10 @@
             // dgvQuotes
             // 
             dgvQuotes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvQuotes.Location = new Point(129, 45);
+            dgvQuotes.Location = new Point(12, 45);
             dgvQuotes.Name = "dgvQuotes";
             dgvQuotes.RowHeadersWidth = 51;
-            dgvQuotes.Size = new Size(481, 375);
+            dgvQuotes.Size = new Size(660, 375);
             dgvQuotes.TabIndex = 0;
             // 
             // btnAdd
