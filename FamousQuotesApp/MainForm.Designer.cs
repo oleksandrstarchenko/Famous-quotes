@@ -28,55 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            dgvQuotes = new DataGridView();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
             textBox1 = new TextBox();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvQuotes).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvQuotes
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(238, 125);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += this.dataGridView1_CellContentClick;
+            dgvQuotes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvQuotes.Location = new Point(129, 45);
+            dgvQuotes.Name = "dgvQuotes";
+            dgvQuotes.RowHeadersWidth = 51;
+            dgvQuotes.Size = new Size(481, 375);
+            dgvQuotes.TabIndex = 0;
             // 
-            // button1
+            // btnAdd
             // 
-            button1.Location = new Point(406, 51);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Додати";
-            button1.UseVisualStyleBackColor = true;
+            btnAdd.Location = new Point(678, 269);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Додати";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
-            // button2
+            // btnEdit
             // 
-            button2.Location = new Point(641, 90);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 2;
-            button2.Text = "Редагувати";
-            button2.UseVisualStyleBackColor = true;
+            btnEdit.Location = new Point(678, 335);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "Редагувати";
+            btnEdit.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnDelete
             // 
-            button3.Location = new Point(625, 341);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 3;
-            button3.Text = "Видалити";
-            button3.UseVisualStyleBackColor = true;
+            btnDelete.Location = new Point(678, 409);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "Видалити";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(159, 58);
+            textBox1.Location = new Point(129, 9);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 4;
@@ -84,11 +84,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(433, 351);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(110, 20);
             label1.TabIndex = 5;
-            label1.Text = "label1";
+            label1.Text = "Фільтр/Пошук:";
             // 
             // MainForm
             // 
@@ -97,23 +97,24 @@
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(dataGridView1);
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnAdd);
+            Controls.Add(dgvQuotes);
             Name = "MainForm";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Text = "Каталог крилатих висловів";
+            Load += MainForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvQuotes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private DataGridView dgvQuotes;
+        private Button btnAdd;
+        private Button btnEdit;
+        private Button btnDelete;
         private TextBox textBox1;
         private Label label1;
     }
