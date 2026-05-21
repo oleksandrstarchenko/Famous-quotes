@@ -47,5 +47,32 @@ namespace FamousQuotesApp
                 UpdateTable(); // Перемальовуємо таблицю, щоб нова цитата з'явилася на екрані
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Перевіряємо, чи користувач взагалі вибрав якийсь рядок
+            if (dgvQuotes.SelectedRows.Count > 0)
+            {
+                // Виводимо віконце з питанням: Так чи Ні?
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете видалити цей вислів?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Беремо об'єкт цитати прямо з вибраного рядка таблиці
+                    Quote quoteToDelete = (Quote)dgvQuotes.SelectedRows[0].DataBoundItem;
+
+                    // Передаємо цю цитату нашому менеджеру на видалення (він сам перезапише файл json)
+                    quoteManager.DeleteQuote(quoteToDelete);
+
+                    // Оновлюємо таблицю на екрані, щоб рядок зник
+                    UpdateTable();
+                }
+            }
+            else
+            {
+                // Якщо нічого не вибрано, просто попереджаємо
+                MessageBox.Show("Будь ласка, виберіть цитату для видалення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

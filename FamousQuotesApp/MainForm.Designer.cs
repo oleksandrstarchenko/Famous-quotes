@@ -73,6 +73,7 @@
             btnDelete.TabIndex = 3;
             btnDelete.Text = "Видалити";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // textBox1
             // 
