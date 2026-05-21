@@ -101,5 +101,41 @@ namespace FamousQuotesApp
                 dgvQuotes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            // Перевіряємо, чи користувач виділив хоча б одну цитату для редагування
+            if (dgvQuotes.SelectedRows.Count > 0)
+            {
+                // Отримуємо об'єкт цитати, яку хочемо відредагувати
+                Quote selectedQuote = (Quote)dgvQuotes.SelectedRows[0].DataBoundItem;
+
+                // Створюємо форму редагування
+                EditQuoteForm editForm = new EditQuoteForm();
+
+                // Передаємо дані з виділеної цитати прямо в текстові поля другої форми
+                // Щоб цей код запрацював, нам потрібно зробити елементи на другій формі доступними (публічними)
+                // Але ми зробимо хитріше: створимо спеціальний метод всередині EditQuoteForm
+                editForm.LoadQuoteData(selectedQuote);
+
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Якщо користувач змінив дані й натиснув "Зберегти", оновлюємо нашу цитату
+                    selectedQuote.Text = editForm.NewQuote.Text;
+                    selectedQuote.Author = editForm.NewQuote.Author;
+                    selectedQuote.Category = editForm.NewQuote.Category;
+
+                    // Зберігаємо оновлений список у файл JSON
+                    quoteManager.SaveToFile();
+
+                    // Перемальовуємо таблицю
+                    UpdateTable();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Будь ласка, виберіть вислів для редагування.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

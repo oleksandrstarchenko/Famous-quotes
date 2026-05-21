@@ -40,5 +40,13 @@ namespace FamousQuotesApp
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        // Цей метод закине дані цитати в текстові поля при редагуванні
+        public void LoadQuoteData(Quote quote)
+        {
+            txtText.Text = quote.Text;
+            txtAutor.Text = quote.Author;
+            cmbCategory.Text = quote.Category;
+        }
     }
 }
