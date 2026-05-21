@@ -32,7 +32,7 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            textBox1 = new TextBox();
+            txtSearch = new TextBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvQuotes).BeginInit();
             SuspendLayout();
@@ -75,12 +75,12 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Location = new Point(129, 9);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 4;
+            txtSearch.Location = new Point(129, 9);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(125, 27);
+            txtSearch.TabIndex = 4;
             // 
             // label1
             // 
@@ -97,7 +97,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(txtSearch);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Controls.Add(btnAdd);
@@ -116,7 +116,7 @@
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
-        private TextBox textBox1;
+        private TextBox txtSearch;
         private Label label1;
     }
 }

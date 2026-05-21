@@ -11,7 +11,8 @@ namespace FamousQuotesApp
         public MainForm()
         {
             InitializeComponent();
-            quoteManager = new QuoteManager(); // Ініціалізуємо його
+            quoteManager = new QuoteManager();// Ініціалізуємо його
+            txtSearch.TextChanged += txtSearch_TextChanged;// Кажемо програмі: "Коли текст у полі txtSearch змінюється, виконуй метод txtSearch_TextChanged"
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -72,6 +73,32 @@ namespace FamousQuotesApp
             {
                 // Якщо нічого не вибрано, просто попереджаємо
                 MessageBox.Show("Будь ласка, виберіть цитату для видалення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Сюди вставляй весь той великий код пошуку, який я дав у попередньому повідомленні
+            string searchText = txtSearch.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                UpdateTable();
+            }
+            else
+            {
+                var filteredQuotes = quoteManager.Quotes.FindAll(q =>
+                    (q.Text != null && q.Text.ToLower().Contains(searchText)) ||
+                    (q.Author != null && q.Author.ToLower().Contains(searchText))
+                );
+
+                dgvQuotes.DataSource = null;
+                dgvQuotes.DataSource = filteredQuotes;
+
+                if (dgvQuotes.Columns["Text"] != null) dgvQuotes.Columns["Text"].HeaderText = "Текст вислову";
+                if (dgvQuotes.Columns["Author"] != null) dgvQuotes.Columns["Author"].HeaderText = "Автор";
+                if (dgvQuotes.Columns["Category"] != null) dgvQuotes.Columns["Category"].HeaderText = "Категорія";
+                dgvQuotes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }
     }
