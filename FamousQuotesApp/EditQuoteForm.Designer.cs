@@ -36,6 +36,9 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            numRating = new NumericUpDown();
+            label4 = new Label();
+            ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
             SuspendLayout();
             // 
             // txtText
@@ -108,11 +111,32 @@
             label3.TabIndex = 7;
             label3.Text = "Категорія:";
             // 
+            // numRating
+            // 
+            numRating.Location = new Point(541, 239);
+            numRating.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            numRating.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numRating.Name = "numRating";
+            numRating.Size = new Size(247, 27);
+            numRating.TabIndex = 8;
+            numRating.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(431, 241);
+            label4.Name = "label4";
+            label4.Size = new Size(104, 20);
+            label4.TabIndex = 9;
+            label4.Text = "Рейтинг ( 1-5)";
+            // 
             // EditQuoteForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 419);
+            Controls.Add(label4);
+            Controls.Add(numRating);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -124,6 +148,7 @@
             Name = "EditQuoteForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Додавання/Редагування вислову";
+            ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -138,5 +163,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private NumericUpDown numRating;
+        private Label label4;
     }
 }

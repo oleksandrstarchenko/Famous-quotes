@@ -28,7 +28,7 @@ namespace FamousQuotesApp
             }
 
             // Створюємо нову цитату з введених даних
-            NewQuote = new Quote(txtText.Text, txtAutor.Text, cmbCategory.Text);
+            NewQuote = new Quote(txtText.Text, txtAutor.Text, cmbCategory.Text, (int)numRating.Value);
 
             // Кажемо програмі, що все пройшло успішно (OK) і закриваємо вікно
             this.DialogResult = DialogResult.OK;
@@ -47,6 +47,11 @@ namespace FamousQuotesApp
             txtText.Text = quote.Text;
             txtAutor.Text = quote.Author;
             cmbCategory.Text = quote.Category;
+            // Якщо у старої цитати рейтинг 0 або менше 1, ставимо мінімум 1, інакше — оригінальний рейтинг
+            if (quote.Rating < 1)
+                numRating.Value = 1;
+            else
+                numRating.Value = quote.Rating;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq; // Обов'язково для сортування LINQ
 using System.Windows.Forms;
 
 namespace FamousQuotesApp
@@ -24,12 +25,16 @@ namespace FamousQuotesApp
         private void UpdateTable()
         {
             dgvQuotes.DataSource = null; // Скидаємо стару наявну інформацію
-            dgvQuotes.DataSource = quoteManager.Quotes; // Прив'язуємо оновлений список
+
+            // Сортуємо список цитат за спаданням рейтингу (від 5 до 1)
+            var sortedQuotes = quoteManager.Quotes.OrderByDescending(q => q.Rating).ToList();
+            dgvQuotes.DataSource = sortedQuotes;
 
             // Робимо таблицю красивішою: перейменовуємо заголовки стовпчиків
             if (dgvQuotes.Columns["Text"] != null) dgvQuotes.Columns["Text"].HeaderText = "Текст вислову";
             if (dgvQuotes.Columns["Author"] != null) dgvQuotes.Columns["Author"].HeaderText = "Автор";
             if (dgvQuotes.Columns["Category"] != null) dgvQuotes.Columns["Category"].HeaderText = "Категорія";
+            if (dgvQuotes.Columns["Rating"] != null) dgvQuotes.Columns["Rating"].HeaderText = "Рейтинг (1-5)";
 
             // Автоматично розтягуємо стовпчики по ширині вікна
             dgvQuotes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -114,8 +119,6 @@ namespace FamousQuotesApp
                 EditQuoteForm editForm = new EditQuoteForm();
 
                 // Передаємо дані з виділеної цитати прямо в текстові поля другої форми
-                // Щоб цей код запрацював, нам потрібно зробити елементи на другій формі доступними (публічними)
-                // Але ми зробимо хитріше: створимо спеціальний метод всередині EditQuoteForm
                 editForm.LoadQuoteData(selectedQuote);
 
                 if (editForm.ShowDialog() == DialogResult.OK)
@@ -124,6 +127,7 @@ namespace FamousQuotesApp
                     selectedQuote.Text = editForm.NewQuote.Text;
                     selectedQuote.Author = editForm.NewQuote.Author;
                     selectedQuote.Category = editForm.NewQuote.Category;
+                    selectedQuote.Rating = editForm.NewQuote.Rating;
 
                     // Зберігаємо оновлений список у файл JSON
                     quoteManager.SaveToFile();
